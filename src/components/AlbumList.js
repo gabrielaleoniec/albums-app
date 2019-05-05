@@ -21,6 +21,9 @@ class AlbumList extends React.Component {
 
     render() {
         console.log(this.props);
+        if(!this.props.displayAlbums) {
+            return <span>Please unfold the list</span>;
+        }
         return (
             <ul>
                 {this.renderAlbums(this.props.albums)}

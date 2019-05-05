@@ -21,9 +21,9 @@ export const fetchAlbumsAndSongs = () => async dispatch => {
   return dispatch({ type: "FETCH_ALBUMS_AND_SONGS", payload: albumsComplete });
 };
 
-export const displayAlbum = display => dispatch => {
+export const displayAlbums = display => dispatch => {
   return dispatch({
-    type: "DISPLAY_ALBUM",
+    type: "DISPLAY_ALBUMS",
     payload: !display
   });
 };

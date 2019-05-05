@@ -5,7 +5,7 @@ const SongList = (props) => {
         return null;
     }
     return (<ul>
-        {props.songs.map(song => <li>{song}</li>)}
+        {props.songs.map(song => <li key={song}>{song}</li>)}
     </ul>);
 }
 

@@ -1,13 +1,28 @@
 import React from 'react';
-import AlbumList from './AlbumList';
+import {connect} from 'react-redux';
 
-const App = () => {
-    return (
-        <div>
-            <h1>Albums +/-:</h1>
-            <AlbumList/>
-        </div>
-    );
+import AlbumList from './AlbumList';
+import {displayAlbums} from '../actions';
+
+
+class App extends React.Component {
+    render() {
+        console.log('App render', this);
+        return (
+            <div>
+                <h1>Albums:</h1>
+                <button onClick={()=>this.props.displayAlbums(this.props.display)}>Open</button>
+                <AlbumList displayAlbums={this.props.display}/>
+            </div>
+        );
+    }
 }
 
-export default App;
+const mapStateToProps = (state) =>{
+    console.log('Inside mapStateToProps', state);
+    return {
+        display: state.displayAlbums
+    }
+}
+
+export default connect(mapStateToProps, {displayAlbums})(App);
