@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
 
+import "./AlbumList.scss";
+
 import SongList from "./SongList";
 //import Button from './Button';
 import { fetchAlbumsAndSongs, displayAlbums, displaySongs } from "../actions";
@@ -16,7 +18,8 @@ class AlbumList extends React.Component {
     }
     return Object.entries(this.props.albums).map(([key, album]) => (
       <li key={key}>
-        {album.band} {album.album}
+        <div className="album__band">{album.band}</div>
+        <div className="album__album">{album.album}</div>
         <button onClick={() => this.props.displaySongs(this.props.songs, key)}>
           Open, Close
         </button>
