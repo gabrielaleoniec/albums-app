@@ -2,16 +2,17 @@ import React from "react";
 import { connect } from "react-redux";
 
 import "./AlbumList.scss";
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import Typography from '@material-ui/core/Typography';
 
 import SongList from "./SongList";
 //import Button from './Button';
 import { fetchAlbumsAndSongs, displayAlbums, displaySongs } from "../actions";
 
 class AlbumList extends React.Component {
+  handleClick = (el) => {
+    console.log(el.classList);
+    el.classList.toggle('button--opened');
+  }
+
   componentDidMount() {
     this.props.fetchAlbumsAndSongs();
   }
@@ -21,30 +22,28 @@ class AlbumList extends React.Component {
       return null;
     }
     return Object.entries(this.props.albums).map(([key, album]) => (
-      <ExpansionPanel key={key} className="album">
-        <ExpansionPanelSummary>
+      <div key={key} className="album">
+        <div>
           <h2 className="h2 album__band">{album.band}</h2>
           <h3 className="h3 album__album">{album.album}</h3>
-        </ExpansionPanelSummary>
-        <ExpansionPanelDetails>
+        </div>
+        <div>
           <SongList key={key} songs={album.songs} display={true} />
-        </ExpansionPanelDetails>
-      </ExpansionPanel>
+        </div>
+      </div>
     ));
   };
 
   render() {
-    let header = <h1 className="h1">Albums:</h1>;
-    let button = (
-      <button onClick={() => this.props.displayAlbums(this.props.display)}>
-        Toggle albums
-    </button>
-    );
+    let header = (<h1 className="h1"><a className="button" href="#" onClick={(e) => {
+      console.log('On click',  e, e.target);
+      this.props.displayAlbums(this.props.display); this.handleClick(e.target)}}>
+      Albums</a></h1>);
+    
     if (!this.props.display) {
       return (
         <div className="albums">
           {header}
-          {button}
           <span>Please unfold the list</span>
         </div>
       );
@@ -52,7 +51,6 @@ class AlbumList extends React.Component {
     return (
       <div className="albums">
         {header}
-        {button}
         <ul className="albums__list">{this.renderAlbums(this.props.albums)}</ul>
         <div>{this.renderAlbums(this.props.albums)}</div>
       </div>

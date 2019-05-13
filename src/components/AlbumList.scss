@@ -41,3 +41,27 @@
     color: $grey;
   }
 }
+
+.button {
+  color: $white;
+  display: inline-block;
+  outline: none;
+  padding: 8px;
+  text-align: center;
+  text-decoration: none;
+
+  &::after {
+    content: "\0203A";
+    font-size: 1.1em;
+    padding-left: 5px;
+    transform: rotate(0) translate(0);
+    transition: transform 2s ease-in;
+  }
+
+  &--opened {
+    &::after {
+      display: inline-block;
+      transform: rotate(90deg) translate(0, -5px);
+    }
+  }
+}

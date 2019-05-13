@@ -1,0 +1,15 @@
+@import '../styles/colors.scss';
+
+.songs {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+
+  &__song {
+    border-bottom: 1px solid $whiteHalf;
+    color: $white;
+    list-style-type: none;
+    margin: 0.5rem 0;
+    padding: 0.5rem 0;
+  }
+}
