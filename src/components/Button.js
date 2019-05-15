@@ -1,23 +1,26 @@
 import React from 'react';
-import {connect} from 'react-redux';
 
-import {displaySongs} from '../actions';
+import './Button.scss';
 
-
-class Button extends React.Component {
-    render() {
-        console.log(this.props);
-    return (<button onClick={()=>this.props.displaySongs(this.props.albums, this.props.albumId)}>
-    Open, Close
-    </button>)
+const handleClick = (el) => {
+    let target = el;
+    while (target && target.classList && !target.classList.contains('button')) {
+        target = target.parentNode;
     }
+
+    if (!target.parentNode) {
+        return false;
+    }
+
+    target.classList.toggle('button--opened');
 }
 
-const mapStateToProps = (state) => {
-    console.log('mapStateToProps in Button', state);
-    return {
-        albums: state.albums
-    }
+const Button = ({ children }) => {
+    return (
+        <div className="button" onClick={(e) => handleClick(e.target)}>
+            {children}
+        </div>
+    )
 }
 
-export default connect(mapStateToProps, {displaySongs})(Button);
+export default Button;

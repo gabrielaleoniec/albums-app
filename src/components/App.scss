@@ -14,20 +14,10 @@
 }
 
 .app {
-    background-color: $darkgrey1;
+    background: linear-gradient(to right, #D6DBE5 0%, #F1F2F6 100%);
     display: flex;
     font-size: 16px;
     font-family: Lato, Arial, sans-serif;
     height: 100vh;
     position: relative;
-}
-
-.footer {
-    &__bottom {
-        bottom: 0;
-        color: $grey;
-        position: absolute;
-        text-align: center;
-        width: 100%;
-    }
 }

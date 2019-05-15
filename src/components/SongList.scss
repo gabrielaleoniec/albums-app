@@ -6,10 +6,10 @@
   padding: 0;
 
   &__song {
-    border-bottom: 1px solid $whiteHalf;
-    color: $white;
+    border-bottom: 1px solid $white;
+    color: $textColor;
     list-style-type: none;
-    margin: 0.5rem 0;
-    padding: 0.5rem 0;
+    margin: 0.8rem;
+    padding: 0.2rem 0;
   }
 }

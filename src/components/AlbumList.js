@@ -4,15 +4,10 @@ import { connect } from "react-redux";
 import "./AlbumList.scss";
 
 import SongList from "./SongList";
-//import Button from './Button';
 import { fetchAlbumsAndSongs, displayAlbums, displaySongs } from "../actions";
+import Button from "./Button";
 
 class AlbumList extends React.Component {
-  handleClick = (el) => {
-    console.log(el.classList);
-    el.classList.toggle('button--opened');
-  }
-
   componentDidMount() {
     this.props.fetchAlbumsAndSongs();
   }
@@ -22,37 +17,39 @@ class AlbumList extends React.Component {
       return null;
     }
     return Object.entries(this.props.albums).map(([key, album]) => (
-      <div key={key} className="album">
-        <div>
+      <li key={key} className="album" onClick={() => this.props.displaySongs(this.props.songs, key)}>
+
+        <Button>
           <h2 className="h2 album__band">{album.band}</h2>
           <h3 className="h3 album__album">{album.album}</h3>
-        </div>
+        </Button>
         <div>
-          <SongList key={key} songs={album.songs} display={true} />
+          <SongList key={key} songs={album.songs} display={this.props.songs[key]} />
         </div>
-      </div>
+      </li>
     ));
   };
 
   render() {
-    let header = (<h1 className="h1"><a className="button" href="#" onClick={(e) => {
-      console.log('On click',  e, e.target);
-      this.props.displayAlbums(this.props.display); this.handleClick(e.target)}}>
-      Albums</a></h1>);
-    
+    let header = (<Button><h1 className="h1" role="button" onClick={(e) => {
+      this.props.displayAlbums(this.props.display);
+      
+    }}>
+      <span className="h1--gradient">Albums</span></h1></Button>);
+
     if (!this.props.display) {
       return (
         <div className="albums">
           {header}
-          <span>Please unfold the list</span>
         </div>
       );
     }
     return (
       <div className="albums">
         {header}
-        <ul className="albums__list">{this.renderAlbums(this.props.albums)}</ul>
-        <div>{this.renderAlbums(this.props.albums)}</div>
+        <div className={this.props.display ? 'albums__list--opened' : 'albums__list--closed'}>
+          <ul className="albums__list">{this.renderAlbums(this.props.albums)}</ul>
+        </div>
       </div>
     );
   }

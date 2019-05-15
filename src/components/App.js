@@ -9,7 +9,6 @@ class App extends React.Component {
     return (
       <div className="app">
         <AlbumList className="albums"/>
-        <a href="https://www.freepik.com/free-photos-vectors/background" className="footer__bottom">Background vector created by starline - www.freepik.com</a>
       </div>
     );
   }

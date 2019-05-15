@@ -1,0 +1,36 @@
+@import "../styles/colors.scss";
+
+.button {
+    color: $white;
+    display: inline-block;
+    outline: none;
+    padding: 8px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    width: calc(100% - 16px);
+  
+    &:hover {
+      cursor: pointer;
+    }
+  
+    &::after {
+      color: $themecolor2;
+      content: "\0203A";
+      display: inline-block;
+      font-size: 2.4rem;
+      font-weight: bold;
+      padding-left: 5px;
+      position: absolute;
+      top: 0;
+      right: 1rem;
+  
+      transition: transform 0.2s ease-in;
+    }
+  
+    &--opened {
+      &::after {
+        transform: rotate(90deg) translate(-5px, 0);
+      }
+    }
+  }
