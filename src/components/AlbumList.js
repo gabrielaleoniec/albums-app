@@ -3,9 +3,9 @@ import { connect } from "react-redux";
 
 import "./AlbumList.scss";
 
-import SongList from "./SongList";
-import { fetchAlbumsAndSongs, displayAlbums, displaySongs } from "../actions";
+import Album from "./Album";
 import Button from "./Button";
+import { fetchAlbumsAndSongs, displayAlbums} from "../actions";
 
 class AlbumList extends React.Component {
   componentDidMount() {
@@ -18,17 +18,7 @@ class AlbumList extends React.Component {
     }
 
     return Object.entries(this.props.albums).map(([key, album]) => (
-      <li key={key} className="album">
-        <div onClick={() => this.props.displaySongs(this.props.songs, key)}>
-          <Button>
-            <h2 className="h2 album__band">{album.band}</h2>
-            <h3 className="h3 album__album">{album.album}</h3>
-          </Button>
-        </div>
-        <div>
-          <SongList key={key} songs={album.songs} display={this.props.songs[key]} />
-        </div>
-      </li>
+      <Album key={key} k={key} album={album} />
     ));
   };
 
@@ -60,12 +50,11 @@ class AlbumList extends React.Component {
 const mapStateToProps = state => {
   return {
     albums: state.albums,
-    display: state.displayAlbums,
-    songs: state.displaySongs
+    display: state.displayAlbums
   };
 };
 
 export default connect(
   mapStateToProps,
-  { fetchAlbumsAndSongs, displayAlbums, displaySongs }
+  { fetchAlbumsAndSongs, displayAlbums }
 )(AlbumList);

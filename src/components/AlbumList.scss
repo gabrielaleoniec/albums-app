@@ -39,20 +39,6 @@
   }
 }
 
-.album {
-  border-bottom: 1px solid $lightgrey;
-  list-style-type: none;
-  margin: 0;
-  padding: 0.5rem;
-
-  &__band {
-    color: $grey;
-  }
-  &__album {
-    color: $grey;
-  }
-}
-
 @media screen and (min-width: 480px) {
   .albums {
     width: 26rem;

@@ -1,0 +1,15 @@
+@import "../styles/colors.scss";
+
+.album {
+    border-bottom: 1px solid $lightgrey;
+    list-style-type: none;
+    margin: 0;
+    padding: 0.5rem;
+  
+    &__band {
+      color: $grey;
+    }
+    &__album {
+      color: $grey;
+    }
+  }
