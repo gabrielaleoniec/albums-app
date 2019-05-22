@@ -1,17 +1,11 @@
 @import "../styles/colors.scss";
 
 .h1 {
-  color: $white;
+  color: $themecolor2;
   font-size: 2rem;
   margin: 0;
   text-align: center;
   text-transform: uppercase;
-
-  &--gradient {
-    background: linear-gradient(to right, $themecolor1 0%, $themecolor2 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
 
   &::after {
     color: $themecolor2;
