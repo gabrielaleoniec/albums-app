@@ -9,7 +9,7 @@ import Button from "./Button";
 
 class AlbumList extends React.Component {
   componentDidMount() {
-    this.props.fetchAlbumsAndSongs();
+    this.props.fetchAlbumsAndSongs(this.props.query);
   }
 
   renderAlbums = () => {

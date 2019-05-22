@@ -1,7 +1,7 @@
 import albumsConnection from "../apis/albums";
 
-export const fetchAlbumsAndSongs = () => async dispatch => {
-  const response = await albumsConnection.get("/data.json");
+export const fetchAlbumsAndSongs = (query) => async dispatch => {
+  const response = await albumsConnection.get(query);
   let albumsComplete = {};
   for (const { band, album, song } of response.data) {
     let key = (band+album).replace(/[^a-z0-9]/ig, "");

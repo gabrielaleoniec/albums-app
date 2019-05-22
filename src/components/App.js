@@ -7,7 +7,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <AlbumList className="albums"/>
+        <AlbumList className="albums" query="/data.json"/>
       </div>
     );
   }
