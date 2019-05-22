@@ -2,25 +2,17 @@ import React from 'react';
 
 import './Button.scss';
 
-const handleClick = (el) => {
-    let target = el;
-    while (target && target.classList && !target.classList.contains('button')) {
-        target = target.parentNode;
-    }
-
-    if (!target.parentNode) {
-        return false;
-    }
-
+const handleClick = (target) => {
     target.classList.toggle('button--opened');
 }
 
-const Button = ({ children }) => {
+const Button = ({ children, opened }) => {
     return (
-        <div className="button" onClick={(e) => handleClick(e.target)}>
+        <div className={`button ${opened ? 'button--opened' : ''}`} onClick={(e) => handleClick(e.currentTarget)}>
             {children}
         </div>
     )
 }
+
 
 export default Button;

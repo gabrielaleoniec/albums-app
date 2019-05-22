@@ -11,13 +11,13 @@ class Album extends React.Component {
     render() {
         return <li key={this.props.k} className="album">
             <div onClick={() => this.props.displaySongs(this.props.songs, this.props.k)}>
-                <Button>
+                <Button opened={this.props.songs[this.props.k]}>
                     <h2 className="h2 album__band">{this.props.album.band}</h2>
                     <h3 className="h3 album__album">{this.props.album.album}</h3>
                 </Button>
             </div>
             <div>
-                <SongList key={this.props.k} songs={this.props.album.songs} display={this.props.songs[this.props.k]} />
+                <SongList songs={this.props.album.songs} display={this.props.songs[this.props.k]} />
             </div>
         </li>
     }
