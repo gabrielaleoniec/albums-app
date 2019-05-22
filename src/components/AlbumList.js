@@ -16,13 +16,15 @@ class AlbumList extends React.Component {
     if (!this.props.albums) {
       return null;
     }
-    return Object.entries(this.props.albums).map(([key, album]) => (
-      <li key={key} className="album" onClick={() => this.props.displaySongs(this.props.songs, key)}>
 
-        <Button>
-          <h2 className="h2 album__band">{album.band}</h2>
-          <h3 className="h3 album__album">{album.album}</h3>
-        </Button>
+    return Object.entries(this.props.albums).map(([key, album]) => (
+      <li key={key} className="album">
+        <div onClick={() => this.props.displaySongs(this.props.songs, key)}>
+          <Button>
+            <h2 className="h2 album__band">{album.band}</h2>
+            <h3 className="h3 album__album">{album.album}</h3>
+          </Button>
+        </div>
         <div>
           <SongList key={key} songs={album.songs} display={this.props.songs[key]} />
         </div>
@@ -31,11 +33,10 @@ class AlbumList extends React.Component {
   };
 
   render() {
-    let header = (<Button><h1 className="h1" role="button" onClick={(e) => {
-      this.props.displayAlbums(this.props.display);
-      
-    }}>
-      <span className="h1--gradient">Albums</span></h1></Button>);
+    let header = 
+      <h1 className="h1" role="button" onClick={(e) => { this.props.displayAlbums(this.props.display); }}>
+        <Button>Albums</Button>
+      </h1>;
 
     if (!this.props.display) {
       return (
@@ -44,6 +45,7 @@ class AlbumList extends React.Component {
         </div>
       );
     }
+
     return (
       <div className="albums">
         {header}
