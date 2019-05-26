@@ -7,20 +7,18 @@ import Button from "./Button";
 import SongList from "./SongList";
 import { displaySongs } from '../actions';
 
-class Album extends React.Component {
-    render() {
-        return <li key={this.props.k} className="album">
-            <div onClick={() => this.props.displaySongs(this.props.songs, this.props.k)}>
-                <Button opened={this.props.songs[this.props.k]}>
-                    <h2 className="h2 album__band">{this.props.album.band}</h2>
-                    <h3 className="h3 album__album">{this.props.album.album}</h3>
-                </Button>
-            </div>
-            <div>
-                <SongList songs={this.props.album.songs} display={this.props.songs[this.props.k]} />
-            </div>
-        </li>
-    }
+const Album = (props) => {
+    return <li key={props.k} className="album">
+        <div onClick={() => props.displaySongs(props.songs, props.k)}>
+            <Button opened={props.songs[props.k]}>
+                <h2 className="h2 album__band">{props.album.band}</h2>
+                <h3 className="h3 album__album">{props.album.album}</h3>
+            </Button>
+        </div>
+        <div>
+            <SongList songs={props.album.songs} display={props.songs[props.k]} />
+        </div>
+    </li>
 }
 
 const mapStateToProps = state => {

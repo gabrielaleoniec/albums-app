@@ -2,19 +2,20 @@ import albumsConnection from "../apis/albums";
 
 export const fetchAlbumsAndSongs = (query) => async dispatch => {
   const response = await albumsConnection.get(query);
-  let albumsComplete = {};
-  for (const { band, album, song } of response.data) {
+  const albumsComplete = response.data.reduce((albumsHelper, {band, album, song}) => {
     let key = (band+album).replace(/[^a-z0-9]/ig, "");
 
-    if (albumsComplete[key]  && Array.isArray(albumsComplete[key].songs)) {
-      if (albumsComplete[key].songs.indexOf(song) === -1) {
-        const songs = [...albumsComplete[key].songs, song];
-        albumsComplete[key] = { band, album, songs };
+    if (albumsHelper[key]  && Array.isArray(albumsHelper[key].songs)) {
+      if (albumsHelper[key].songs.indexOf(song) === -1) {
+        const songs = [...albumsHelper[key].songs, song];
+        albumsHelper[key] = { band, album, songs };
       }
     } else {
-      albumsComplete[key] = { band, album, songs: [song] };
+      albumsHelper[key] = { band, album, songs: [song] };   
     }
-  }
+    return albumsHelper;
+  }, {});
+
   return dispatch({ type: "FETCH_ALBUMS_AND_SONGS", payload: albumsComplete });
 };
 

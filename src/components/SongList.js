@@ -2,12 +2,12 @@ import React from 'react';
 
 import './SongList.scss';
 
-const SongList = (props) => {
-    if(!props.songs || !props.display) {
+const SongList = ({songs, display}) => {
+    if(!songs || !display) {
         return null;
     }
     return (<ul className="songs">
-        {props.songs.map(song => <li className="songs__song" key={song}>{song}</li>)}
+        {songs.map(song => <li className="songs__song" key={song}>{song}</li>)}
     </ul>);
 }
 
